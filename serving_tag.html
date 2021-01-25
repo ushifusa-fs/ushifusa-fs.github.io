@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #admatrixOLV {
+        position: absolute;
+        z-index:0;
+        background: #7F7F7F;
+      }
+
+      #admatrixOLV:focus {
+        outline: none;
+      }
+
+      #admatrixOLVOverlayText {
+        position: relative;
+        height: 100%;
+        font-family: "メイリオ",Meiryo,sans-serif;
+      }
+
+      #upperTitleText {
+        position:absolute;
+        left:0;
+        z-index:1;
+        width: 100%;
+        display: none;
+        justify-content: center;
+        margin-top: 42px;
+        font-weight: bold;
+      }
+
+      #lowerTitleText {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        margin-top: 95px;
+        display: none;
+        justify-content: center;
+        font-size: 16pt;
+        font-weight: bold;
+      }
+
+      #descriptionText {
+        display: none;
+        position:absolute;
+        left:0;
+        z-index:1;
+        width: 100%;
+        bottom: 0;
+        height: 100px;
+      }
+
+      #descriptionText span {
+        color: #FFF;
+        font-size: 16pt; /*industry ≦ 12 chars = 18px */ /*company ≦ 12 chars = 18px */
+        width: 100%;
+        margin: 0px auto;
+        text-align: center;
+        padding: 5px;
+        vertical-align: middle;
+        display: table-cell;
+        font-weight: bold;
+      }
+
+      #admatrixOLVBannerWrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      #admatrixOLVBannerWrapper img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .animate-bounce {
+        -o-animation: bounce 2.5s infinite linear;
+        -ms-animation: bounce 2.5s infinite linear;
+        -moz-animation: bounce 2.5s infinite linear;
+        animation: bounce 3.0s infinite linear;
+        animation-iteration-count: 1;
+      }
+
+      .animate-pulse {
+        -o-animation: pulse 2s;
+        -ms-animation: pulse 2s;
+        -moz-animation: pulse 2s;
+        animation: pulse 2s;
+        animation-delay: 0.5s;
+        animation-direction: alternate;
+        animation-iteration-count: 1;
+      }
+
+      .animate-drop {
+        animation: drop 1s;
+        animation-direction: alternate;
+        animation-iteration-count: 1;
+      }
+
+
+      @keyframes bounce {
+        0% {
+          opacity: 1;
+          transform: translate(-4em, -5em);
+          animation-timing-function: cubic-bezier(.51,.01,.79,.02);
+        }
+        10% {
+          transform: translate(-1.0em, 0em);
+          animation-timing-function: cubic-bezier(.19,1,.7,1);
+        }
+        20% {
+          transform: translate(-0.5em, -1.5em);
+          animation-timing-function: cubic-bezier(.51,.01,.79,.02);
+        }
+        30% {
+          transform: translate(-0.25em, 0.25em);
+          animation-timing-function: cubic-bezier(.19,1,.7,1);
+        }
+        40% {
+          transform: translate(-0.05em,-0.25em);
+          animation-timing-function: cubic-bezier(.51,.01,.79,.02);
+        }
+
+        45% {
+          transform: translate(-0.05em, -0.25em);
+          animation-timing-function: cubic-bezier(.19,1,.7,1);
+        }
+
+        50% {
+          transform: translate(0em, 0em);
+          animation-timing-function: cubic-bezier(.19,1,.7,1);
+
+        }
+      }
+
+      @keyframes pulse {
+
+        10% {
+          opacity: 0.75;
+          transform: scale(1.05);
+        }
+
+        20% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+
+        30% {
+          opacity: 0.75;
+          transform: scale(1.0);
+        }
+
+        40%{
+          opacity: 1;
+          transform: scale(1.05);
+        }
+
+        50%{
+          opacity: 0.75;
+          transform: scale(1.0);
+
+        }
+
+        60% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+
+        70% {
+          opacity: 0.75;
+          transform: scale(1.02);
+        }
+
+        80% {
+          opacity: 1;
+          transform: scale(1.0);
+
+        }
+
+        90% {
+          opacity: 0.75;
+          transform: scale(1.05);
+
+        }
+
+        100% {
+          opacity: 1;
+          transform: scale(1.0);
+        }
+      }
+
+      .company-type-1-8 {
+        font-size: 24pt;
+      }
+      .company-type-9-12 {
+        font-size: 16pt;
+      }
+      .industry-type-1-7 {
+        font-size: 27pt;
+      }
+      .industry-type-8-11 {
+        font-size: 17pt;
+      }
+
+      .default-format-gray {
+        color: #7F7F7F;
+      }
+      .default-format-blue {
+        color: #2E75B6;
+      }
+      .default-format-vermilion {
+        color: #ED7D31;
+      }
+      .default-format-black {
+        color: #000;
+      }
+      .default-format-navy {
+        color: #203864;
+      }
+
+      .telop-format-text {}
+      .telop-format-bottom {
+        display: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        justify-content: center;
+        font-size: 7pt;
+        bottom: 0;
+        margin-bottom: 30px;
+      }
+      .telop-format-top {
+        display: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        justify-content: center;
+        font-size: 7pt;
+        top: 0;
+        margin-top: 30px;
+      }
+      .telop-format-none {
+        display: none;
+      }
+
+      .telop-font-color-navy {
+        color: #203864;
+      }
+      .telop-font-color-black {
+        color: #000;
+      }
+      .telop-font-color-white {
+        color: #FFF;
+      }
+
+      .telop-bg-color-gray {
+        background: #7F7F7F;
+      }
+      .telop-bg-color-blue {
+        background: #2E75B6;
+      }
+      .telop-bg-color-vermilion {
+        background: #ED7D31;
+      }
+      .telop-bg-color-black {
+        background: #000;
+      }
+      .telop-bg-color-navy {
+        background: #203864;
+      }
+      .telop-bg-color-white {
+        background: #FFF;
+      }
+    </style>
+  </head>
+  <body>
+  <!-- スクリプトの実行  dlib03.js で作成されるdev -->
+  <div id="dsp_adm_9d5d90f792c10e0b51c4c9395c719e67_IQ0MDVM9" class="dsp_adm_9d5d90f792c10e0b51c4c9395c719e67_IQ0MDVM9" style="width: 300px; height: 250px; position: relative; top: 0px; left: 0px; margin: 0px; padding: 0px; display: inline-block;">
+    <video id="admatrixOLV" width="300" height="250">
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="admatrixOLVOverlayText" class='industry-type'>
+      <p id="upperTitleText" class='default-format-navy'>フルスード</p>
+      <p id="lowerTitleText" class='default-format-navy'>にお勤めの方へ！</p>
+      <div id="descriptionText">
+        <span>BtoB広告ならクライド</span>
+      </div>
+      <span id="telopText" class='telop-format-bottom telop-bg-color-navy telop-font-color-white'>フルスピードにお勤めの方へ BtoB広告ならクライド</span>
+    </div>
+    <div id="admatrixOLVBannerWrapper" class='endby-banner'>
+      <img src="300x250.png" alt="">
+    </div>
+  </div>
+  <!-- スクリプトの実行 -->
+  <script type="text/javascript">
+      var video = document.getElementById('admatrixOLV');
+      var upperTitleText = document.getElementById('upperTitleText');
+      var descriptionText = document.getElementById('descriptionText');
+      var lowerTitleText = document.getElementById('lowerTitleText');
+      var telopText = document.getElementById('telopText');
+      var bannerWrapper = document.getElementById('admatrixOLVBannerWrapper');
+      var admatrixOLVOverlayText = document.getElementById('admatrixOLVOverlayText');
+      var adType = admatrixOLVOverlayText.classList.contains('company-type') ? 'companyType' : 'industryType';
+      var defaultVideoUpperTitleLength = upperTitleText.textContent.length;
+
+      // specify default video font size base on char length and ad type
+      if ('companyType' === adType) {
+          if (defaultVideoUpperTitleLength <= 8) {
+              upperTitleText.classList.add('company-type-1-8');
+          } else {
+              upperTitleText.classList.add('company-type-9-12');
+          }
+      } else if ('industryType' === adType) {
+          if (defaultVideoUpperTitleLength <= 7) {
+              upperTitleText.classList.add('industry-type-1-7');
+          } else {
+              upperTitleText.classList.add('industry-type-8-11');
+          }
+      }
+
+      video.addEventListener('loadedmetadata', function () {
+          lowerTitleText.style.display = 'flex';
+          descriptionText.style.display = 'table';
+      });
+
+      video.ontimeupdate = function() {
+
+          if (video.duration === video.currentTime) {
+
+              upperTitleText.style.display = 'none';
+              lowerTitleText.style.display = 'none';
+              descriptionText.style.display = 'none';
+              upperTitleText.classList.remove('animate-bounce');
+              upperTitleText.classList.remove('animate-pulse');
+
+              if (bannerWrapper.classList.contains('endby-banner')) {
+                  bannerWrapper.style.display = 'block';
+              }
+
+          } else if (video.currentTime >= 4.9) {
+              bannerWrapper.style.display = 'none';
+              upperTitleText.style.display = 'none';
+              lowerTitleText.style.display = 'none';
+              descriptionText.style.display = 'none';
+              upperTitleText.classList.remove('animate-bounce');
+              upperTitleText.classList.remove('animate-pulse');
+
+              // don't show telop if client video format is none
+              if (!telopText.classList.contains('telop-format-none')) {
+                  telopText.style.display = 'flex';
+              }
+          } else {
+              bannerWrapper.style.display = 'none';
+              upperTitleText.style.display = 'flex';
+              lowerTitleText.style.display = 'flex';
+              descriptionText.style.display = 'table';
+              telopText.style.display = 'none';
+
+              upperTitleText.classList.add('animate-bounce');
+              setTimeout(function() {
+                  upperTitleText.classList.add('animate-pulse');
+              }, 1500);
+          }
+      };
+  </script>
+  <script src="http://localhost:5500/compiled/admatrixAds.js" async></script>
+  </body>
+</html>

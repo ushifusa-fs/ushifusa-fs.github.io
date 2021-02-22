@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+        #admatrixOLV {
+            position: absolute;
+            z-index:0;
+            background: #7F7F7F;
+        }
+
+        #admatrixOLV:focus {
+            outline: none;
+        }
+
+        #admatrixOLVOverlayText {
+            position: relative;
+            height: 100%;
+            font-family: "メイリオ",Meiryo,sans-serif;
+        }
+
+        #upperTitleText {
+            position:absolute;
+            left:0;
+            z-index: 1;
+            width: 100%;
+            display: none;
+            justify-content: center;
+            top: 25px;
+            font-weight: bold;
+            font-size: 18pt; /* same size for all replacement */
+        }
+
+        #lowerTitleText {
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            margin-top: 10px;
+            display: none;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 10pt; /* same size for all replacement */
+        }
+
+        #companyLogoWrapper {
+            display: none;
+            padding: 10px 5px;
+        }
+
+        #companyLogoWrapper img {
+            z-index: 1;
+            width: 100px;
+            height: 40px;
+        }
+
+        #companyBannerWrapper {
+            display: none;
+            bottom: 55px;
+            position: absolute;
+            height: auto;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #companyBannerWrapper img {
+            z-index: 1;
+            width: 190px;
+            height: 100px;
+        }
+
+        #descriptionText {
+            display: none;
+            position: absolute;
+            left:0;
+            z-index: 1;
+            width: 100%;
+            bottom: 0;
+            height: 50px;
+        }
+
+        #descriptionText span {
+            font-size: 14pt;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 5px;
+            vertical-align: middle;
+            display: table-cell;
+            font-weight: bold;
+        }
+
+        #admatrixOLVBannerWrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #admatrixOLVBannerWrapper img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .animate-pulse {
+            -o-animation: pulse 2.5s ease;
+            -ms-animation: pulse 2.5s ease;
+            -moz-animation: pulse 2.5s ease;
+            animation: pulse 2.5s ease;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 4s ease;
+            -webkit-animation: fadeIn 2s ease ;
+            -moz-animation: fadeIn 2s ease ;
+            -o-animation: fadeIn 2s ease ;
+            -ms-animation: fadeIn 2s ease ;
+        }
+
+        @keyframes pulse {
+            20% {
+                opacity: 1;
+                transform: scale(1.0);
+            }
+
+            30% {
+                opacity: 0.5;
+                transform: scale(1.075);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1.0);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.075);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.0);
+            }
+
+            70% {
+                opacity: 0.5;
+                transform: scale(1.075);
+            }
+
+            80% {
+                opacity: 1;
+                transform: scale(1.0);
+            }
+
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity:0;
+            }
+
+            25% {
+                opacity:0.25;
+            }
+
+            50%{
+                opacity:0.55;
+                font-weight: bold;
+            }
+
+            75% {
+
+                opacity:0.75;
+                font-weight: bold;
+            }
+
+            100% {
+                opacity:1;
+                font-weight: bolder;
+            }
+        }
+
+        .telop-format-text {}
+        .telop-format-bottom {
+            display: none;
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            justify-content: center;
+            font-size: 10pt;
+            bottom: 0;
+            margin-bottom: 22px;
+        }
+        .telop-format-top {
+            display: none;
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            justify-content: center;
+            font-size: 10pt;
+            top: 0;
+            margin-top: 22px;
+        }
+        .telop-format-none {
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+  <!-- スクリプトの実行  dlib03.js で作成されるdev -->
+  <div id="dsp_adm_9d5d90f792c10e0b51c4c9395c719e67_IQ0MDVM9" class="dsp_adm_9d5d90f792c10e0b51c4c9395c719e67_IQ0MDVM9" style="width: 300px; height: 250px; position: relative; top: 0px; left: 0px; margin: 0px; padding: 0px; display: inline-block;">
+    <video id="admatrixOLV" width="300" height="250">
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="admatrixOLVOverlayText" class="industry-type animate-fadein-pulse">
+      <div id="companyLogoWrapper">
+        <img src="100x40.png" alt=""/>
+      </div>
+      <p id="upperTitleText" style="color: #6b248f;">ソフトウェア業</p>
+      <p id="lowerTitleText" style="color: #6b248f;">にお勤めの方へ！</p>
+      <div id="companyBannerWrapper">
+        <img src="1200x628.png" alt=""/>
+      </div>
+      <div id="descriptionText" style="background: #6b248f; color: #fff;">
+        <span>BtoBのリード顧客の獲得ならDSP</span>
+      </div>
+      <span id="telopText" class='telop-format-bottom' style="background: #6b248f; color: #fff;">ソフトウェア業の方必見！BtoB広告ならクライドへ</span>
+    </div>
+    <div id="admatrixOLVBannerWrapper" class='endby-play-again'>
+      <img src="300x250.png" alt=""/>
+    </div>
+  </div>
+  <!-- スクリプトの実行 -->
+  <script type="text/javascript">
+      var video = document.getElementById('admatrixOLV');
+      var upperTitleText = document.getElementById('upperTitleText');
+      var descriptionText = document.getElementById('descriptionText');
+      var lowerTitleText = document.getElementById('lowerTitleText');
+      var companyLogoWrapper = document.getElementById('companyLogoWrapper');
+      var companyBannerWrapper = document.getElementById('companyBannerWrapper');
+      var telopText = document.getElementById('telopText');
+      var bannerWrapper = document.getElementById('admatrixOLVBannerWrapper');
+      var admatrixOLVOverlayText = document.getElementById('admatrixOLVOverlayText');
+      var animation = '';
+
+      /* Customize what default video format is used for animation */
+      if (admatrixOLVOverlayText.classList.contains('animate-fadein-pulse')) {
+          animation = 'fadein-pulse';
+      }
+
+      video.addEventListener('loadedmetadata', function () {
+          upperTitleText.style.display = 'flex';
+          lowerTitleText.style.display = 'flex';
+          descriptionText.style.display = 'table';
+          companyLogoWrapper.style.display = 'block';
+          companyBannerWrapper.style.display = 'flex';
+      });
+
+      video.ontimeupdate = function() {
+
+          if ('fadein-pulse' === animation) {
+              if (video.currentTime > 0.05 && video.currentTime < 1.6) {
+                  upperTitleText.classList.add('animate-fade-in');
+                  lowerTitleText.classList.add('animate-fade-in');
+              }
+
+              if (video.currentTime > 1.8 && video.currentTime < 2.3) {
+                  upperTitleText.classList.remove('animate-fade-in');
+                  lowerTitleText.classList.remove('animate-fade-in');
+                  upperTitleText.classList.add('animate-pulse');
+                  lowerTitleText.classList.add('animate-pulse');
+              }
+          }
+
+          if (video.duration === video.currentTime) {
+
+              upperTitleText.style.display = 'none';
+              lowerTitleText.style.display = 'none';
+              descriptionText.style.display = 'none';
+              companyLogoWrapper.style.display = 'none';
+              companyBannerWrapper.style.display = 'none';
+
+              if ('fadein-pulse' === animation) {
+                  upperTitleText.classList.remove('animate-fade-in');
+                  lowerTitleText.classList.remove('animate-fade-in');
+                  upperTitleText.classList.remove('animate-pulse');
+                  lowerTitleText.classList.remove('animate-pulse');
+              }
+
+              if (bannerWrapper.classList.contains('endby-banner')) {
+                  bannerWrapper.style.display = 'block';
+              }
+
+          } else if (video.currentTime >= 4.9) {
+              bannerWrapper.style.display = 'none';
+              upperTitleText.style.display = 'none';
+              lowerTitleText.style.display = 'none';
+              descriptionText.style.display = 'none';
+              companyLogoWrapper.style.display = 'none';
+              companyBannerWrapper.style.display = 'none';
+
+              if ('fadein-pulse' === animation) {
+                  upperTitleText.classList.remove('animate-fade-in');
+                  lowerTitleText.classList.remove('animate-fade-in');
+                  upperTitleText.classList.remove('animate-pulse');
+                  lowerTitleText.classList.remove('animate-pulse');
+              }
+
+              // don't show telop if client video format is none
+              if (!telopText.classList.contains('telop-format-none')) {
+                  telopText.style.display = 'flex';
+              }
+          } else {
+              bannerWrapper.style.display = 'none';
+              upperTitleText.style.display = 'flex';
+              lowerTitleText.style.display = 'flex';
+              descriptionText.style.display = 'table';
+              companyLogoWrapper.style.display = 'block';
+              companyBannerWrapper.style.display = 'flex';
+              telopText.style.display = 'none';
+          }
+      };
+  </script>
+  <script src="./admatrixAds.js" async></script>
+  </body>
+</html>
